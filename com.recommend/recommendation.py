@@ -35,6 +35,17 @@ df["timestamp"] = df["unixReviewTime"]
 # 保留所需字段
 processed_df = df[["user_id", "item_id", "text", "rating", "timestamp"]]
 
+# # 统计每个用户的评论数量并按数量降序排序
+# user_review_counts_sorted = processed_df.groupby("user_id").size().reset_index(name="review_count")
+# user_review_counts_sorted = user_review_counts_sorted.sort_values(by="review_count", ascending=False)
+#
+# # 输出到 CSV 文件
+# output_csv_path = r"C:\Users\15529\Desktop\essay\FileData\user_review_counts.csv"
+# user_review_counts_sorted.to_csv(output_csv_path, index=False, encoding="utf-8-sig")
+#
+# print(f"用户评论数量已保存到：{output_csv_path}")
+
+
 # 按用户聚合评论文本
 user_texts = processed_df.groupby("user_id")["text"].apply(lambda texts: " ".join(texts)).reset_index()
 user_texts.columns = ["user_id", "full_text"]

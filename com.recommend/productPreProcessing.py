@@ -1,8 +1,6 @@
 import pandas as pd
 import ast
 from sentence_transformers import SentenceTransformer
-import json
-import  re
 
 with open(r"C:\Users\15529\Desktop\essay\FileData\meta_Beauty.json", 'r', encoding='utf-8') as f:
     # 使用ast安全转换单引号字符串
@@ -10,6 +8,7 @@ with open(r"C:\Users\15529\Desktop\essay\FileData\meta_Beauty.json", 'r', encodi
 
 
 product_df = pd.DataFrame(data)
+print(f"Total number of products: {product_df['asin'].nunique()}")
 
 
 def build_product_text(row):
